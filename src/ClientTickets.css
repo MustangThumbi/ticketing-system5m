@@ -1,0 +1,46 @@
+.client_tickets{
+display: flex;
+flex: 1;
+flex-direction: column;
+background-color: antiquewhite;
+height: 100vh;
+}
+.client_tickets_header{
+display: flex;
+flex-direction: column;
+margin-bottom: 20px;
+}
+.back_button:hover{
+    background-color: lightgrey;
+}
+.header_link{
+  color: antiquewhite;
+  
+}
+.back_button{
+margin-left: -1200px;
+
+}
+.clients_tickets_header_title{
+margin-left: -900px;
+}
+.clients_tickets_display{
+display: flex;
+flex-direction: column;
+overflow: scroll;
+}
+.ticket_info{
+margin-bottom: 20px;
+display: flex;
+padding: 10px;
+align-items: center;
+justify-content: space-between;
+border-bottom: 1px solid rgb(106, 105, 104)!important;;
+border-top: 1px solid rgb(106, 105, 104)!important;;
+border-right: 1px solid rgb(106, 105, 104)!important;
+border-left: 1px solid rgb(106, 105, 104)!important; 
+border-radius: 5px!important;
+margin-left: 20px;
+margin-right:20px;
+background-color: lightgrey;
+}

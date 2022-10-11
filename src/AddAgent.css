@@ -1,0 +1,60 @@
+.add_agents{
+background-color: antiquewhite;
+flex:1;
+display: flex;
+flex-direction: column;
+height: 100vh;
+}
+.add_agent_header{
+display: flex;
+margin-top: 20px;
+margin-left: 20px;
+}
+.add_agent_header_span{
+display: flex;
+align-items: center;
+justify-content: space-between;
+border-radius: 2px;
+border-bottom: 1px solid rgb(106, 105, 104)!important;;
+border-top: 1px solid rgb(106, 105, 104)!important;;
+border-right: 1px solid rgb(106, 105, 104)!important;
+border-left: 1px solid rgb(106, 105, 104)!important; 
+padding-left: 20px;
+padding-right: 20px;
+}
+.create_agent{
+display: flex;
+margin-top: 30px;
+margin-left: 20px;
+
+} 
+.create_agent_form{
+ display: flex;
+ align-items: center;
+ justify-content: space-evenly;
+
+}
+.create_agent_form>h5{
+margin-right: 5px;
+}
+.create_agent_form>input{   
+ height: 40px;
+ margin-bottom: 10px;
+ background-color:antiquewhite;
+ width:400px ;
+ margin-right: 20px;
+}
+.create_agent_button{
+margin-left: 20px;
+height: 45px;
+margin-bottom: 10px;
+background-color:gold;
+width:350px ;
+
+}
+.agents_display{
+display: flex;
+flex-direction: column;
+overflow: scroll;
+
+}
