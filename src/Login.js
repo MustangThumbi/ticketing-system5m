@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./Login.css";
 import { useStateValue } from "./StateProvider";
-import { auth, provider } from "./firebase";
+import db, { auth, provider } from "./firebase";
 import { actionTypes } from "./reducer";
 import { Link } from "react-router-dom";
+import { addDoc,collection,getDocs,onSnapshot, query, where } from "firebase/firestore";
 import "./RaiseTicket.css";
 import { useNavigate } from "react-router-dom";
 
@@ -28,19 +29,56 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // login function with navigation
   const login = (e) => {
     e.preventDefault();
-
     auth
       .signInWithEmailAndPassword(email, password)
       .then((auth) => {
-        // it successfully created a new user with email and password
-        //  navigate("/homepage");
-        navigate("/customer");
-      })
+        const q = query(collection(db, "agents"), where("agent", "==", true));
 
-      .catch((error) => alert(error.message));
-  };
+       
+        getDocs(q)
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            console.log(doc.id, " => ", doc.data());
+            if (doc.data().email === email) {
+              navigate("/super");
+            } else {
+              navigate("/customer");
+            }
+          })
+       })
+      }).catch((error) => alert(error.message));
+    }
+      
+
+
+          
+
+      
+
+          
+        
+        
+     
+
+
+  // const login = (e) => {
+  //   e.preventDefault();
+
+  //   auth
+  //     .signInWithEmailAndPassword(email, password)
+  //     .then((auth) => {
+  //       // it successfully created a new user with email and password
+  //       //  navigate("/homepage");
+  //       navigate("/customer");
+  //     })
+
+  //     .catch((error) => alert(error.message));
+  // };
+
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
