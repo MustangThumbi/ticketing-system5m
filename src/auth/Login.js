@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./Login.css";
-import { useStateValue } from "./StateProvider";
-import db, { auth, provider } from "./firebase";
-import { actionTypes } from "./reducer";
+import { useStateValue } from "../Redux/StateProvider";
+import db, { auth, provider } from "../database/firebase";
+import { actionTypes } from "../Redux/reducer";
 import { Link } from "react-router-dom";
 import { addDoc,collection,getDocs,onSnapshot, query, where } from "firebase/firestore";
-import "./RaiseTicket.css";
+import "../customers/RaiseTicket.css";
 import { useNavigate } from "react-router-dom";
 
 function Login() {

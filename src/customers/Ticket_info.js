@@ -1,6 +1,6 @@
 import React from "react";
 import "./ClientTickets.css";
-import { db } from "./firebase";
+import { db } from "../database/firebase";
 import { useParams } from "react-router-dom";
 
 function Ticket_info({ subject, agent, status, id }) {

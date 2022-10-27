@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import "./AddAgent.css";
+import "../admin/AddAgent.css";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import { useStateValue } from "./StateProvider";
-import db, { auth, provider } from "./firebase";
+import { useStateValue } from "../Redux/StateProvider";
+import db, { auth, provider } from "../database/firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { actionTypes } from "./reducer";
-import Agents_Info from "./Agents_Info";
+import { actionTypes } from "../Redux/reducer";
+import Agents_Info from "../admin/Agents_Info";
 import { useNavigate } from "react-router-dom";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";

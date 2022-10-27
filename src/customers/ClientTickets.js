@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./ClientTickets.css";
 import ArrowCircleLeftOutlinedIcon from "@mui/icons-material/ArrowCircleLeftOutlined";
-import { db } from "./firebase";
+import { db } from "../database/firebase";
 import Ticket_info from "./Ticket_info";
-import { useStateValue } from "./StateProvider";
+import { useStateValue } from "../Redux/StateProvider";
 //import { query, collection, onSnapshot } from "firebase/firestore";
 
 function ClientTickets() {
@@ -30,20 +30,19 @@ function ClientTickets() {
   // var query = citiesRef.where("state", "==", "CA");
 
   useEffect(() => {
-    db.collection("tickets")
-      .where("customer", "==", user.email)
-      .onSnapshot((snapshot) => {
-        console.log(snapshot.docs.map((doc) => doc.data().ticket));
-        setTickets(
-          snapshot.docs.map((doc) => ({
-            uid: user.uid,
-            id: doc.id,
-            data: doc.data(),
-          }))
-          //   .orderBy("timestamp", "desc")
-        );
-      });
+    db.collection("tickets").onSnapshot((snapshot) => {
+      console.log(snapshot.docs.map((doc) => doc.data().ticket));
+      setTickets(
+        snapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }))
+        //   .orderBy("timestamp", "desc")
+      );
+    });
   }, []);
+
+  
 
   return (
     <div className="client_tickets">

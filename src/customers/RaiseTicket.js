@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import "./RaiseTicket.css";
 import { IconButton } from "@mui/material";
-import { Link } from "react-router-dom";
-import { auth, db } from "./firebase";
-import { useStateValue } from "./StateProvider";
+import { Await, Link } from "react-router-dom";
+import { addDoc, collection, serverTimestamp, setDoc } from "firebase/firestore";
+import { auth, db } from "../database/firebase";
+import { useStateValue } from "../Redux/StateProvider";
 
 //import { query, collection, onSnapshot } from "firebase/firestore";
 
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 
-function RaiseTicket() {
+function RaiseTicket({id}) {
   const [{ user }, dispatch] = useStateValue();
 
   // const [tickets, setTickets] = useState([]);
@@ -28,23 +29,85 @@ function RaiseTicket() {
   const [input, setInput] = useState("");
 
   const [input1, setInput1] = useState("");
+  const [min, setMin] = useState("");
+  const [completed, setCompleted] = useState(false);
 
-  const createTicket = (e) => {
+
+
+  // create ticket and assign to agents sequentialy
+  const createTicket=(e) => {
     e.preventDefault();
-    console.log("You typed >>>>", input);
+  }
+  
 
-    db.collection("tickets").add({
-      subject: input,
-      description: input1,
-      asssigned: false,
-      agent: "mat",
-      status: "open",
-      customer: user.email,
-    });
+  // const createTicket = (e) => {
+  //   e.preventDefault();
+ //  
+    //
+    // async function getcount(){
 
-    setInput("");
-    setInput1("");
-  };
+    // }
+
+
+    
+//     async function getcount() {
+//       const querySnapshot = await db.collection("agents",id,"tickets").get();
+//       let count = 0;
+//       querySnapshot.forEach((doc) => {
+//         count += doc.data().count;
+//       });
+//       return count;
+//     }
+// //count the number of tickets in the collection
+//     async function getcount() {
+//       const querySnapshot = await db.collection("agents",id,"tickets").get();
+//       let count = 0;
+//       querySnapshot.forEach((doc) => {
+//         count += doc.data().count;
+//       });
+//       return count;
+//     }
+
+
+//create a ticket with the count
+    // async function createTicket() {
+    //   const count = await getcount();
+    //   await addDoc(collection(db, "agents",id,"tickets"), {
+    //     count: count + 1,
+    //     ticket: input,
+    //     min: input1,
+    //     completed: completed,
+    //     timestamp: serverTimestamp(),
+    //   });
+    // }
+    //add ticket to agents sequentialy
+    // db.collection
+    
+  //   db.collection("agents",id,"tickets").add({
+  //   subject: input,
+  //   description: input1,
+  //   count: getcount(),
+  //   completed: false,
+  //   }).then(async() => {
+  //     // Add document to collection tickets;
+  //     await addDoc(collection(db, "tickets"), {
+  //       subject: input,
+  //       description: input1,
+  //       count: getcount(),
+  //       completed: false,
+  //       agent: user.email,
+  //     });
+  //   });
+  //   setInput("");
+  //   setInput1("");
+  //   setMin("");
+  //   setCompleted(false);
+  // }
+  
+
+    
+  // Assign tickets to agents
+  
 
   return (
     <div className="raiseticket">

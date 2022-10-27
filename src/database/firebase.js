@@ -10,6 +10,18 @@ const firebaseConfig = {
   appId: "1:112850878709:web:4c9f6bad88ab27355885bc",
   measurementId: "G-ZHX8T33KSC",
 };
+// const firebaseConfig = {
+
+//   apiKey: "AIzaSyDZLPaTC17j-p5Z2K8rgnqMKSKIshgZ4oE",
+//   authDomain: "tickets-965b0.firebaseapp.com",
+//   projectId: "tickets-965b0",
+//   storageBucket: "tickets-965b0.appspot.com",
+//   messagingSenderId: "158112886755",
+//   appId: "1:158112886755:web:2d5d72f4f5772cc48a7ad6",
+//   measurementId: "G-ZRZ1C6PE21"
+
+// };
+
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 const db = firebaseApp.firestore();

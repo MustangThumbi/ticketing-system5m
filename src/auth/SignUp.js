@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./Login.css";
-import { useStateValue } from "./StateProvider";
-import { actionTypes } from "./reducer";
-import db, { auth, provider } from "./firebase";
+import { useStateValue } from "../Redux/StateProvider";
+import { actionTypes } from "../Redux/reducer";
+import db, { auth, provider } from "../database/firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router-dom";

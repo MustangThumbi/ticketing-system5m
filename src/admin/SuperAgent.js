@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Avatar } from "@mui/material";
 import "./SuperAgent.css";
-import { db } from "./firebase";
-import Ticket_info from "./Ticket_info";
+import { db } from "../database/firebase";
+import Ticket_info from "../customers/Ticket_info";
 import { Link } from "react-router-dom";
 import ArrowCircleLeftOutlinedIcon from "@mui/icons-material/ArrowCircleLeftOutlined";
-import { useStateValue } from "./StateProvider";
+import { useStateValue } from "../Redux/StateProvider";
 
 function SuperAgent() {
   const [tickets, setTickets] = useState([]);
