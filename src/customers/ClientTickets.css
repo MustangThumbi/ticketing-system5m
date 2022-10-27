@@ -1,46 +1,56 @@
 .client_tickets{
+  width: 100%;
 display: flex;
-flex: 1;
+gap: 10px;
 flex-direction: column;
-background-color: antiquewhite;
-height: 100vh;
+
 }
 .client_tickets_header{
 display: flex;
 flex-direction: column;
-margin-bottom: 20px;
+margin-top: 20px;
 }
 .back_button:hover{
     background-color: lightgrey;
 }
-.header_link{
-  color: antiquewhite;
-  
-}
+
 .back_button{
 margin-left: -1200px;
 
 }
-.clients_tickets_header_title{
-margin-left: -900px;
-}
+
 .clients_tickets_display{
 display: flex;
 flex-direction: column;
-overflow: scroll;
+background-color: #fefefe;
+gap: 20px;
+overflow: hidden;
+overflow-y: scroll;
+
+
 }
 .ticket_info{
 margin-bottom: 20px;
 display: flex;
 padding: 10px;
+gap: 20px;
 align-items: center;
 justify-content: space-between;
-border-bottom: 1px solid rgb(106, 105, 104)!important;;
-border-top: 1px solid rgb(106, 105, 104)!important;;
-border-right: 1px solid rgb(106, 105, 104)!important;
-border-left: 1px solid rgb(106, 105, 104)!important; 
-border-radius: 5px!important;
 margin-left: 20px;
 margin-right:20px;
-background-color: lightgrey;
+background-color: rgb(203, 203, 216);
+}
+.ticket_info_closed{
+margin-bottom: 20px;
+display: flex;
+padding: 10px;
+gap: 20px;
+align-items: center;
+justify-content: space-between;
+margin-left: 20px;
+margin-right:20px;
+background-color: rgb(255, 0, 0);
+}
+.ticket_info:hover{
+    background-color: lightgrey;
 }

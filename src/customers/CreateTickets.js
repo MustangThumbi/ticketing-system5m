@@ -1,8 +1,9 @@
-import { Button } from '@mui/material'
-import { addDoc, collection, orderBy, where,serverTimestamp, query, limit, getDocs, updateDoc, doc, DocumentReference } from 'firebase/firestore';
+import { Button, Link, Modal } from '@mui/material'
+import { addDoc, collection, orderBy, where,serverTimestamp, query, limit, getDocs, updateDoc, doc, DocumentReference, setDoc, deleteDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import db from '../database/firebase';
 import { useStateValue } from '../Redux/StateProvider';
+import ArrowCircleLeftOutlinedIcon from "@mui/icons-material/ArrowCircleLeftOutlined";
 import ClientTickets from './ClientTickets';
 import './CreateTicket.css'
 import Ticket_info from './Ticket_info';
@@ -10,39 +11,13 @@ import Ticket_info from './Ticket_info';
 function CreateTickets({id}) {
   const [{ user },] = useStateValue();
   const [open,setOpen]=useState(false)
+  const [assigned,setAssigned]=useState(false)
   const[tickets,setTickets]=useState('')
   const [subject,setSubject]=useState('');
   const[description,setDescription]=useState('')
 
-
-  // const createTicket = (e) => {
-  //   // const q = query(
-  //   //   collection(db, "agents"),
-  //   //   where("agent", "==", true),
-  //   //   orderBy("email"),
-  //   //   limit(1)
-  //   // );
-  //   // getDocs(q).then((querySnapshot) => {
-  //   //   querySnapshot.forEach((doc) => {
-  //   //     console.log(doc.id, " => ", doc.data());
-
-  //   db.collection("tickets").add({
-  //     subject: input,
-  //     description: input1,
-  //     assigned: false,
-  //     agent: "hi",
-  //     status: "open",
-  //     customer: user.email,
-  //   });
-  //   //   });
-  //   // });
-
-  //   setInput("");
-  //   setInput1("");
-  // };
-  //save ticket to db function
   const submit= async(e) => {
-    // get agents 
+    
     
      const docRef= await addDoc(collection(db,"tickets"),{
         subject: subject,
@@ -52,7 +27,7 @@ function CreateTickets({id}) {
         customer: user.email,
         timestamp:serverTimestamp()
       })
-      // get an agent and get the agent email
+    
       const q = query(
         collection(db, "agents"),
         limit(1)
@@ -61,56 +36,49 @@ function CreateTickets({id}) {
       querySnapshot.forEach((doc) => {
    
    const agentN=doc.data().username
+   //get the number of tickets where agent=== agentN
+
   const data = {
-   agent: agentN
+   agent: agentN,
+   
   };
-        // update the ticket with the agent email
-       updateDoc(docRef, data);
-        
+  
+       updateDoc(docRef, data)
+     
+    
+  
       })
+      setOpen(false)
+      setSubject('')
+      setDescription('')
      
     
     
   }
 
 
-
-
-
-
-  
-
-    // e.preventDefault();
-    // setOpen(false)
-    //add ticket to db
-
-  //   db.collection('tickets').add({
-  //     customer: user.email,
-  //     subject: subject,
-  //     description: description,
-  //     status: "open",
-  //     agent: "",
-  //     timestamp: serverTimestamp(),
-  //   });
-  //   setSubject('')
-  //   setDescription('')
-  // }
-
-  
-
-
-
-
   return (
+    <div className='all'>
+    <Link to="/customer" className="backheader_link">
+    <ArrowCircleLeftOutlinedIcon className="back_button" />
+  </Link>
     <div className='Create_main'>
       <div className='Create_left'>
-        <Button> CreateTicket</Button>
-        <Button > MyTickets
+        <button className='btn_mains' onClick={() => setOpen(true)}> Create Ticket</button>
+        <button className='btn_mains'  > My Tickets
 
-        </Button>
+        </button>
         
       </div>
       <div className='create_right'>
+
+  <Modal
+     className='signup-modal'
+  open={open}
+  onClose={()=> setOpen(false)}
+  aria-labelledby="simple-modal-title"
+  aria-describedby="simple-modal-description"
+>
       <form className="add">
               <div className="ticket_subject">
                 <h5>subject: </h5>
@@ -139,10 +107,12 @@ function CreateTickets({id}) {
                <Button>Cancel</Button>
               </div>
             </form>
+</Modal>
             <div className="ticket_info">
               <ClientTickets/>
               </div>
           
+      </div>
       </div>
     </div>
      

@@ -19,13 +19,25 @@ function Ticket_info({ subject, agent, status, id }) {
 
   return (
     <div>
-      <div className="ticket_info">
+    {status==='open' ? (
+        <div className="ticket_info">
         <h3>subject:{subject}</h3>
         <h3>status:{status}</h3>
         <h3>agent:{agent}</h3>
         <button onClick={closeTicket}>closeticket</button>
       </div>
+) : (
+        <div className="ticket_info_closed">
+        <h3>subject:{subject}</h3>
+        <h3>status:{status}</h3>
+        <h3>agent:{agent}</h3>
+        <button onClick={closeTicket}>Ticket Closed</button>
+      
+   
     </div>
+     )}
+    </div>
+
   );
 }
 

@@ -26,7 +26,7 @@ function AddAgent() {
       const res = await createUserWithEmailAndPassword(auth, email, password);
       await updateProfile(auth.currentUser, { displayName: username });
       const user = res.user;
-      await addDoc(collection(db, "users"), {
+      await addDoc(collection(db, "agents"), {
         uid: user.uid,
         username: username,
         authProvider: "local",

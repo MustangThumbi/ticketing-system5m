@@ -6,22 +6,70 @@
     justify-content: space-between;
     padding: 20px;
     margin: 20px;
-    border: 1px, solid, #000;
+
 
 }
 .Create_left{
     width: 30%;
-    height: 100%;
-    background-color: #fefefe;
+    background-color: #eeeaea;
     padding: 20px;
     margin: 20px;
-    border-right: 1px, solid, #000;
+    border-top:1px solid rgb(104, 88, 88) ;
+    border-right: 1px solid rgb(104, 88, 88);
     display: flex;
     flex-direction: column;
+    gap: 10px;
 }
 .form_Buttons{
     display: flex;
     justify-content: center;
-  
     gap: 30px;
+}
+.add{
+    background-color: #ddeedd;
+    border: none;
+    color: rgb(15, 15, 15);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+Button{
+    background-color: #fff;
+    border: none;
+    color: rgb(58, 56, 56);
+    padding: 15px 32px;
+    text-align: center;
+    border-radius: 15px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 800;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.Create_right{
+    width: 60%;
+    max-height:100px ;
+    background-color: #fefefe;
+    padding: 20px;
+    margin: 20px;
+    border-top:1px solid rgb(104, 88, 88) ;
+    border-left: 1px solid rgb(104, 88, 88);
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+  
+}
+.btn_mains{
+    display: flex;
+   flex-direction: column;
+   color: #fff;
+   font-weight: 800;
+   background-color: darkgrey;
+align-items: center;
+   
 }

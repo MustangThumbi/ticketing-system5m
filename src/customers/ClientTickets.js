@@ -11,23 +11,7 @@ function ClientTickets() {
   const [tickets, setTickets] = useState([]);
   const [{ user }, dispatch] = useStateValue();
 
-  // useEffect(() => {
-  //   const unsubscribe = db.collection("tickets").orderBy("timestamp", "desc");
-  //   console
-  //     .log()
-  //     .onSnapshot((snapshot) =>
-  //       setTickets(snapshot.docs.map((doc) => doc.data().ticket))
-  //     );
-  //   return () => {
-  //     unsubscribe();
-  //   };
-  // }, []);
-  // snapshot.docs.map((doc) => ({
-  //         id: doc.id,
-  //         data: doc.data(),
 
-  // var citiesRef = db.collection("cities");
-  // var query = citiesRef.where("state", "==", "CA");
 
   useEffect(() => {
     db.collection("tickets").onSnapshot((snapshot) => {
@@ -42,14 +26,12 @@ function ClientTickets() {
     });
   }, []);
 
-  
+
 
   return (
     <div className="client_tickets">
       <div className="client_tickets_header">
-        <Link to="/customer" className="backheader_link">
-          <ArrowCircleLeftOutlinedIcon className="back_button" />
-        </Link>
+       
         <div className="clients_tickets_header_title">
           {tickets?.length === 0 ? (
             <h3>You have no open tickets 😢</h3>
@@ -60,6 +42,7 @@ function ClientTickets() {
         </div>
 
         <div className="clients_tickets_display">
+          
           {tickets.map((ticket) => (
             <Ticket_info
               key={ticket.id}
@@ -74,6 +57,9 @@ function ClientTickets() {
             />
           ))}
         </div>
+        {/* //if target is closed, then show closed tickets
+        //if target is open, then show open tickets */}
+
       </div>
     </div>
   );
