@@ -40,71 +40,7 @@ function RaiseTicket({id}) {
   }
   
 
-  // const createTicket = (e) => {
-  //   e.preventDefault();
- //  
-    //
-    // async function getcount(){
-
-    // }
-
-
-    
-//     async function getcount() {
-//       const querySnapshot = await db.collection("agents",id,"tickets").get();
-//       let count = 0;
-//       querySnapshot.forEach((doc) => {
-//         count += doc.data().count;
-//       });
-//       return count;
-//     }
-// //count the number of tickets in the collection
-//     async function getcount() {
-//       const querySnapshot = await db.collection("agents",id,"tickets").get();
-//       let count = 0;
-//       querySnapshot.forEach((doc) => {
-//         count += doc.data().count;
-//       });
-//       return count;
-//     }
-
-
-//create a ticket with the count
-    // async function createTicket() {
-    //   const count = await getcount();
-    //   await addDoc(collection(db, "agents",id,"tickets"), {
-    //     count: count + 1,
-    //     ticket: input,
-    //     min: input1,
-    //     completed: completed,
-    //     timestamp: serverTimestamp(),
-    //   });
-    // }
-    //add ticket to agents sequentialy
-    // db.collection
-    
-  //   db.collection("agents",id,"tickets").add({
-  //   subject: input,
-  //   description: input1,
-  //   count: getcount(),
-  //   completed: false,
-  //   }).then(async() => {
-  //     // Add document to collection tickets;
-  //     await addDoc(collection(db, "tickets"), {
-  //       subject: input,
-  //       description: input1,
-  //       count: getcount(),
-  //       completed: false,
-  //       agent: user.email,
-  //     });
-  //   });
-  //   setInput("");
-  //   setInput1("");
-  //   setMin("");
-  //   setCompleted(false);
-  // }
   
-
     
   // Assign tickets to agents
   

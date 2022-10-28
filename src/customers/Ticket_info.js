@@ -25,6 +25,7 @@ function Ticket_info({ subject, agent, status, id }) {
         <h3>status:{status}</h3>
         <h3>agent:{agent}</h3>
         <button onClick={closeTicket}>closeticket</button>
+     
       </div>
 ) : (
         <div className="ticket_info_closed">
