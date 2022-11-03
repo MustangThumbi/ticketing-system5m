@@ -7,6 +7,7 @@ import { collection, addDoc } from "firebase/firestore";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import "firebase/compat/firestore";
+import login from "./Login";
 import "firebase/compat/auth";
 
 function SignUp() {
@@ -26,13 +27,13 @@ function SignUp() {
         username: username,
         authProvider: "local",
         email,
-      });
-      // .then((result) => {
-      //   dispatch({
-      //     type: actionTypes.SET_USER,
-      //     user: result.user,
-      //   });
-      // })
+      })
+      .then((result) => {
+        dispatch({
+          type: actionTypes.SET_USER,
+          user: result.user,
+        });
+      })
     } catch (err) {
       console.error(err);
       alert(err.message);
@@ -56,19 +57,19 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const login = (e) => {
-    e.preventDefault();
+  // const login = (e) => {
+  //   e.preventDefault();
 
-    auth
-      .signInWithEmailAndPassword(email, password)
-      .then((auth) => {
-        // it successfully created a new user with email and password
-        //  navigate("/homepage");
-        navigate("/customer");
-      })
+  //   auth
+  //     .signInWithEmailAndPassword(email, password)
+  //     .then((auth) => {
+  //       // it successfully created a new user with email and password
+  //       //  navigate("/homepage");
+  //       navigate("/customer");
+  //     })
 
-      .catch((error) => alert(error.message));
-  };
+  //     .catch((error) => alert(error.message));
+  // };
 
   // const register = (e) => {
   //   e.preventDefault();
@@ -82,6 +83,7 @@ function SignUp() {
   //     })
   //     .catch((error) => alert(error.message));
   // };
+  
 
   return (
     <div className="login">

@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ClientTickets.css";
 import { db } from "../database/firebase";
 import { useParams } from "react-router-dom";
+import { addDoc, collection, deleteDoc, doc, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
 
-function Ticket_info({ subject, agent, status, id }) {
+function Ticket_info({ subject, agent, status, id ,tickets}) {
+  const [assigned,setAssigned]=useState(false);
+
   const closeTicket = (e) => {
     e.preventDefault();
 
@@ -17,6 +20,39 @@ function Ticket_info({ subject, agent, status, id }) {
       });
   };
 
+
+  // const assign = async(e)=>{
+  //   e.preventDefault();
+   
+  //   await addDoc(collection(db,"agents",id,"tickets"),{
+  //     subject: subject,
+     
+  //     timestamp:serverTimestamp(),
+  //   })
+
+  //   setAssigned(false);
+
+  // }
+
+  const assign = async()=>{
+    if(assigned){
+      setAssigned(false);
+      await deleteDoc(doc(db,"agents",id,"tickets",id));
+    }else{
+    await setDoc(doc(db,"agents",id,"tickets",id),{
+     subject:subject,
+      timestamp:serverTimestamp(),
+    })
+    
+    await updateDoc(doc(db,"agents",id),{
+      likes:tickets.length,
+    })
+
+  }
+  setAssigned(true);
+  }
+        
+
   return (
     <div>
     {status==='open' ? (
@@ -25,6 +61,8 @@ function Ticket_info({ subject, agent, status, id }) {
         <h3>status:{status}</h3>
         <h3>agent:{agent}</h3>
         <button onClick={closeTicket}>closeticket</button>
+        <button onClick={assign}>assigned</button>
+        
      
       </div>
 ) : (

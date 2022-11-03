@@ -27,7 +27,7 @@ function CreateTickets({id}) {
         customer: user.email,
         timestamp:serverTimestamp()
       })
-    
+     
       const q = query(
         collection(db, "agents"),
         limit(1)
@@ -36,25 +36,71 @@ function CreateTickets({id}) {
       querySnapshot.forEach((doc) => {
    
    const agentN=doc.data().username
+   const agentId=doc.id
+  
+   const count=doc.data().count
    //get the number of tickets where agent=== agentN
-
+  
   const data = {
    agent: agentN,
    
   };
-  
-       updateDoc(docRef, data)
-     
+  updateDoc(docRef, data)
+  .then(async()=>{
+    if(assigned){
+      setAssigned(false);
+      await deleteDoc(collection(db,"agents",id,"tickets",agentId));
+    }else{
+    await setDoc(collection(db,"agents",id,"tickets",agentId),{
+     subject:subject,
+      timestamp:serverTimestamp(),
+    })
     
-  
-      })
-      setOpen(false)
-      setSubject('')
-      setDescription('')
-     
-    
-    
+    // await updateDoc(collection(db,"agents",id),{
+    //   likes:tickets.length,
+    // })
+
   }
+  setAssigned(true);
+  },(error)=>{
+    console.log(error)
+  })
+
+
+
+       
+        
+      
+
+  setOpen(false)
+    setSubject('')
+    setDescription('')
+
+    return (agentN);
+    
+  })
+}
+//useEffect to get the number of tickets for each agent
+// useEffect(() => {
+//   const count = query(
+//     collection(db, "tickets"),
+//     where("agent", "==", agentN),
+
+//   );
+//   const querySnapshot = getDocs(count);
+//   querySnapshot.then((querySnapshot) => {
+//     const count = querySnapshot.size;
+//     console.log(count);
+
+//     const data = {
+//       tickets: count,
+//     };
+//     setDoc(doc(db, "agents", id), data, { merge: true });
+
+//   });
+// }, [id, agentN]);
+
+
 
 
   return (
